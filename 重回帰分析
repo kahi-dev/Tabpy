@@ -1,0 +1,21 @@
+SCRIPT_STR(
+"
+import numpy as np
+import statsmodels.api as sm
+
+# Tableauから渡される各引数は、各行の値がリストとして渡されます。
+# _arg1～_arg3：説明変数、_arg4：目的変数
+X = np.column_stack([_arg1, _arg2, _arg3])
+y = np.array(_arg4)
+
+# 定数項（切片）の追加
+X = sm.add_constant(X)
+
+# 重回帰モデルのフィッティング
+model = sm.OLS(y, X).fit()
+
+# モデルの係数（切片および各説明変数の係数）をカンマ区切り文字列で返す
+return ','.join([str(c) for c in model.params])
+",
+SUM([x1]), SUM([x2]), SUM([x3]), SUM([y])
+)
