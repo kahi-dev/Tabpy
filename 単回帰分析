@@ -1,0 +1,23 @@
+SCRIPT_STR(
+"
+import numpy as np
+import statsmodels.api as sm
+
+# _arg1: 説明変数、_arg2: 目的変数
+x = np.array(_arg1)
+y = np.array(_arg2)
+
+# xは1次元配列なので、2次元配列に変換（n行1列）します
+x = x.reshape(-1, 1)
+
+# 定数項（切片）を追加
+X = sm.add_constant(x)
+
+# 単回帰モデルをフィッティング
+model = sm.OLS(y, X).fit()
+
+# model.params[0] が切片、model.params[1] が傾きとなります
+return ','.join([str(c) for c in model.params])
+",
+SUM([x]), SUM([y])
+)
