@@ -10,7 +10,7 @@ group2 = np.array(_arg2)
 # Welchのt検定（等分散性を仮定しない場合）
 t_stat, p_value = ttest_ind(group1, group2, equal_var=False)
 
-# 結果をカンマ区切りの文字列（例："t_stat,p_value"）として返す
+# 結果をカンマ区切りの文字列（例：t_stat,p_value）として返す
 return ','.join([str(t_stat), str(p_value)])
 ",
   /* グループ1の数値データを渡す。例としてSUM()を使用していますが、適切な集計方法に変更してください */
