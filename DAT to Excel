@@ -1,0 +1,5 @@
+import pandas as pd
+
+# DATファイルがカンマ区切りの場合
+df = pd.read_csv('your_file.dat')
+df.to_excel('output_file.xlsx', index=False)
